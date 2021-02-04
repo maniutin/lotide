@@ -1,25 +1,25 @@
 const takeUntil = function(array, callback) {
   const results = [];
   for (let item of array) {
-    if (!callback(item)){
-    results.push(item);
-  } else {
-    return results;
+    if (!callback(item)) {
+      results.push(item);
+    } else {
+      return results;
+    }
   }
-  }
-}
+};
 
 const eqArrays = function(input, compared) {
-  return input.length === compared.length && 
-  input.every((value, index) => value === compared[index])
+  return input.length === compared.length &&
+  input.every((value, index) => value === compared[index]);
 };
 
 const assertArraysEqual = function(actual, expected) {
- if (eqArrays(actual, expected)) {
-  console.log(`✅✅✅ Assertion Passed: ${actual} === ${expected}`);
- } else {
-  console.log(`🛑🛑🛑 Assertion Failed: ${actual} !== ${expected}`);
- }
+  if (eqArrays(actual, expected)) {
+    console.log(`✅✅✅ Assertion Passed: ${actual} === ${expected}`);
+  } else {
+    console.log(`🛑🛑🛑 Assertion Failed: ${actual} !== ${expected}`);
+  }
 };
 
 const data1 = [1, 2, 5, 7, 2, -1, 2, 4, 5];
