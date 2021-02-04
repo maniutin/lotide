@@ -11,20 +11,28 @@ const assertEqual = function(actual, expected) {
 };
 
 const eqObjects = function(object1, object2) {
+  // Object.keys returns an ARRAY of keys
   if (Object.keys(object1).length !== Object.keys(object2).length) {
     return false;
   }
-  for (const element of Object.keys(object1)) {
-    if (!Array.isArray(object1[element]) && !Array.isArray(object2[element])) {
-      if (!Object.keys(object2).includes(element)) {
+
+  // Loop over each key in Object.keys array
+  for (const key of Object.keys(object1)) {
+    // object1[key] is accesssing value inside object
+    // checks if a value is an array
+   if (!Array.isArray(object1[key]) && !Array.isArray(object2[key])) {
+      // checks if keys from object1 are present in object2
+      if (!Object.keys(object2).includes(key)) {
         return false;
       }
-      if (object1[element].length !== object2[element].length) {
+      // checks if values from object1 are NOT the same as in object2
+      if (object1[key] !== object2[key]) {
         return false;
       }
-    } else {
-      return eqArrays(object1[element], object2[element]);
-    }
+   } else {
+     // compares two arrays if both values are arrays
+     return eqArrays(object1[key], object2[key]);
+   }
   }
   return true;
 };
@@ -37,8 +45,8 @@ const cd2 = { c: "1", d: ["2", 3, 4] };
 assertEqual(eqObjects(cd, cd2), false); // => false
 
 const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-assertEqual(eqObjects(ab, ba), true); // => true
+const ba = { b: "2", a: "2" };
+assertEqual(eqObjects(ab, ba), false); // => false
 
 const abc = { a: "1", b: "2", c: "3" };
 assertEqual(eqObjects(ab, abc), false); // => false
