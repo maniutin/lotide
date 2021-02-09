@@ -2,7 +2,7 @@ const letterPositions = require('../letterPositions');
 const assert = require('chai').assert;
 
 
-describe("#countOnly", () => {
+describe("#letterPositions", () => {
   it ("returns [0] for ('hello').h", () => {
     assert.deepEqual(letterPositions("hello").h, [0]);
   });
